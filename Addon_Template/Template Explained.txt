@@ -1,0 +1,104 @@
+#CONTROL_START
+Template
+TEMPLATES
+import tkinter as tk
+tk.
+#CONTROL_PROPERTIES
+Name=Template
+AnchorPosition=DEFAULT_VALUE
+BorderMode=DEFAULT_VALUE
+
+#CONTROL_END
+
+EXPLAINING
+==========
+
+The above lines are the skeleton of a control addon.
+They must always exist for the Easy_IDE to work correctly.
+
+< Template > is the string that used at the Toolbox.
+Also the Easy_IDE search for the < Template.bmp > for control image.
+
+<TEMPLATES> is the string that used at the Project window.
+Also the Easy_IDE search for the < TEMPLATES.ico > for Toolbox and Project window icon.
+
+=================================================================
+<import tkinter as tk>
+<tk.>
+This two lines import the library and declare the library object.
+=================================================================
+
+< Name > is the string that used as the name of the control.
+Also is used at the generation of the python script as control variable.
+
+AnchorPosition and BorderMode are the anchor and bordermode properties of python.
+They must always be there, else Easy_IDE will crash, simple!
+
+Between BorderMode and #CONTROL_END, you can add properties that you want to used at the Template control.
+
+Example of properties
+=====================
+background=DEFAULT_VALUE
+borderwidth=DEFAULT_VALUE
+text=Button
+text=CONV[.insert(tk.INSERT,"%1 %2")][Hello][World]
+
+1st is the < background > property that get the value < DEFAULT_VALUE >.
+2nd is the < borderwidth > property that get the value < DEFAULT_VALUE >.
+3rd is the < text > property that get the value < Button >.
+
+When the python generator see the value < DEFAULT_VALUE > to a property, bypass it,
+so the python use the default value of the corresponding property.
+Else add the corresponding property with the corresponding value to the python script that will be generated.
+Like the < text > property at the 3rd example.
+The generator will create a < text > property at the  < Template > control with the value < Button >.
+
+When using Easy_IDE, you can double click to a property at the property window and change it value.
+Keep in mind that usually, that mean writing the correct text.
+Except for some properties, that i have already add wizards/helpers, like the property < background >,
+that when you double click on it, it show a color selector dialog or when you double click on a property
+with value True/False, it is toggle between them two.
+As the Easy_IDE updated will get more property wizards/helpers.
+
+NOW the 4th example!!!
+======================
+For creating or add support to some properties/functions, that use different approach, i created the CONV[] function.
+
+Example
+=======
+text=CONV[.insert(tk.INSERT,"%1 %2 %1")][Hello][World]
+                                       [1]    [2]
+
+Property name is not important, <text> in the above example, cause it is not used, it is just a place holder.
+After the CONV[...] code, each [...] get a number, the 1st is 1, 2nd is 2,....
+When in CONV[...] the generator see a %1 (as many as find), will replace it with the 1st [...]
+The same as %2, will be replaced with the 2nd [...] and so on....
+So if the above property is at a <entry> control, the generated code will be:
+entry.insert(tk.INSERT,"Hello World Hello")
+So you can see, that with the CONV[...] you can support almost anything ;)
+
+SPECIAL_STRINGS
+===============
+COBJ_ONLY
+CDLG
+COBJ
+GPOBJ
+GPDLG
+
+If at the [...] you use one of the SPECIAL_STRINGS from above list, you can replace the %1, %2, .... with a dynamic value.
+COBJ_ONLY
+CDLG
+COBJ
+GPOBJ
+GPDLG
+
+EXTRA INFORMATION
+=================
+I recoded my 0.1.0 version of Easy_IDE so it use an ADDON system.
+So you can add controls, that Easy_IDE don't support still or you can use a new one created by you :)
+
+Also if you want something added, you can always contact me and i will try add it.
+Keep in mind, i am a simple user, so be gentle :)
+I am making this program in VB6 as a personal bet, while i am learning python :)
+Also i liked VB6 at ancient times, so learning that is comming back with new compilers, made me to want to remember
+the glory days of the past.

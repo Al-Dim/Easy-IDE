@@ -1,0 +1,12 @@
+#CONTROL_START
+Template
+TEMPLATES
+import tkinter as tk
+tk.
+#CONTROL_PROPERTIES
+Name=Template
+AnchorPosition=DEFAULT_VALUE
+BorderMode=DEFAULT_VALUE
+
+
+#CONTROL_END
